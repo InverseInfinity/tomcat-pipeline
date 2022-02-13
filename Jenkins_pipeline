@@ -1,0 +1,66 @@
+pipeline {
+    agent any
+
+    environment {
+    	AWS_IP = credentials('AWS_IP')
+    }
+
+    tools {
+        maven "M2_HOME"
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                git branch: 'main', url: 'https://github.com/InverseInfinity/tomcat_test.git'
+
+                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+
+            post {
+                success {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+                }
+            }
+	}
+	stage ('push') {
+	    steps {
+	        sh '''
+		    echo ********************************************************
+		    echo **** Pushing artifact -WAR file to Tomcat server  ******
+		    echo ********************************************************
+	        '''
+	        sshagent(['ec2-user']) {
+	    	
+	            sh '''
+	    	        scp /var/lib/jenkins/workspace/tomcat_pipline/webapp/target/*.war ec2-user@$AWS_IP:~/
+		    '''	
+	        }
+            }
+	}
+	stage ('Deploy') {
+	    steps {
+	        sh '''
+	            echo ********************************************************
+		    echo **** Deploying WAR file on Docker -Tomcat Server  ******
+		    echo ********************************************************
+	        '''
+	        sshagent(['ec2-user']) {
+	    
+	           sh '''
+	               ssh ec2-user@$AWS_IP "cd /home/ec2-user && /home/ec2-user/deploy.sh"
+	           '''
+	        }
+	    }	
+	}
+    }
+
+    post {
+	success {
+ 	    echo "Successfully Executed"
+	}
+    }
+	
+}
+
