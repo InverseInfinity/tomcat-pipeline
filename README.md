@@ -15,3 +15,6 @@ Steps:
   Bash scripting start up Tomcat server using docker-compose.yml file and copy the pushed WAR file into Tomcat server "webapp" directory
 	
   Run the remote server using port 8080 to see the deployed WAR file.
+
+
+![](Deployment_screenshot.jpg)
