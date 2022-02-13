@@ -1,0 +1,14 @@
+version: "3"
+services:
+    webapp:
+      image: tomcat:9-jdk11-corretto
+      container_name: tomcat
+      ports:
+        - "8080:8080"
+      build:
+        context: ./Dockerfile
+      networks:
+        - net
+
+networks:
+  net:
