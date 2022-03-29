@@ -13,6 +13,8 @@ The purpose of this project is to deploy a simple WAR file on Tomcat server whic
 The source code to build the WAR file comes from Github, Jenkins pulls the code from Git and build the WAR file using MAVEN tools. After building the file, the artifact will be tested and pushed to remote server for deployment. On the remote server, we will have to write Dockerfile and Docker-compose file to run Tomcat server. Using a bash script, the copied artifact WAR file will be deploy onto Docker container where Tomcat server is running, this can be seen from web browser.
 
 
+![Flow-chart](https://user-images.githubusercontent.com/98486154/160717376-cf5c3808-6aff-4618-86fa-884dd7c1e001.jpg)
+
 ## Technologies
 
 - Bash Scripting
