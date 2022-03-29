@@ -3,6 +3,8 @@
 - General Info
 - Technologies
 - Setup
+- Process -CI/CD pipeline
+- Screenshot
 
 
 ## General Info
@@ -121,7 +123,7 @@ Since we need to automate the process, that is whenever there is a change in the
 ### To do this, we will have to activate Jenkins Poll SCM, which will monitor for any changes in the source code, if there is any change occurs, Jenkins deployment job will be triggered and start to deploy the new changes, this way it can be completely automated.
 
 
-
+## Screenshot
 
 
 ![](Deployment_screenshot.jpg)
