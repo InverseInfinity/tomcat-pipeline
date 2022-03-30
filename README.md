@@ -124,6 +124,9 @@ Since we are going to build WAR file from JAVA source code, we will need "tools"
 Since we need to automate the process, that is whenever there is a change in the source code, Jenkins should trigger and run the pipeline, so we can see the change on the deployment. 
 ### To do this, we will have to activate Jenkins Poll SCM, which will monitor for any changes in the source code, if there is any change occurs, Jenkins deployment job will be triggered and start to deploy the new changes, this way it can be completely automated.
 
+![image](https://user-images.githubusercontent.com/98486154/160790827-1bc46c11-b0e8-43c3-801a-12ee2312c736.png)
+
+
 
 ## Screenshot
 
